@@ -1,0 +1,24 @@
+.todolistitem {
+    font-size: 1.25rem;
+}
+
+.todolistitem button{
+    width: 35px;
+    margin: 3px;
+}
+
+.todolistitem label{
+    margin-left: 1.25rem;
+    line-height: 35px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.todolistitem.done .todolistitemlabel {
+    text-decoration: line-through;
+}
+
+.todolistitem.important .todolistitemlabel {
+    font-weight: bold;
+    color: steelblue;
+}
