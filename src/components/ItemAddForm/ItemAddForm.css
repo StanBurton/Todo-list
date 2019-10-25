@@ -1,3 +1,11 @@
 .itemaddform {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.itemaddform input {
+  margin-right: 3px;
+}
+
+.itemaddform button {
+  white-space: nowrap;
 }
