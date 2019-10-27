@@ -18,6 +18,7 @@ export default class App extends Component {
       this.createItem("ypur mun"),
     ],
     listView: "all",
+    term: ''
   };
 
   createItem(label) {
@@ -91,6 +92,10 @@ export default class App extends Component {
     });
   };
 
+  onToggleTerm = term => {
+    this.setState({ term })
+  }
+
   viewSort(view, arr) {
     if (view === "active") {
       return arr.filter(el => !el.done);
@@ -101,9 +106,18 @@ export default class App extends Component {
     return arr;
   }
 
+  sortList = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
+    return items.filter(item => { return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1 })
+  };
+
   render() {
-    const { todoData } = this.state;
-    const { listView } = this.state;
+    const { todoData, listView, term } = this.state;
+
+    const visibleItems = this.sortList(todoData, term);
+
 
     const doneCount = todoData.filter(el => el.done).length;
     const todoCount = todoData.length - doneCount;
@@ -112,7 +126,7 @@ export default class App extends Component {
       <div className="todo-app">
         <AppHeader todo={todoCount} done={doneCount} />
         <div className="top-panel d-flex">
-          <SearchPanel />
+          <SearchPanel onToggleTerm={this.onToggleTerm} />
           <ItemStatusFilter
             onToggleView={this.onToggleView}
             listView={listView}
@@ -120,7 +134,8 @@ export default class App extends Component {
         </div>
 
         <TodoList
-          todos={this.viewSort(listView, todoData)}
+          // todos={this.viewSort(listView, todoData)}
+          todos={visibleItems}
           onDeleted={this.deleteItem}
           onToggleImportant={this.onToggleImportant}
           onToggleDone={this.onToggleDone}
