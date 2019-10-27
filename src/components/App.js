@@ -17,7 +17,7 @@ export default class App extends Component {
       this.createItem("fuck"),
       this.createItem("ypur mun"),
     ],
-    listView: "all",
+    filter: "all",
     term: ''
   };
 
@@ -84,29 +84,27 @@ export default class App extends Component {
     });
   };
 
-  onToggleView = text => {
-    this.setState(() => {
-      return {
-        listView: text,
-      };
-    });
+  onToggleView = filter => {
+    this.setState({ filter });
   };
 
   onToggleTerm = term => {
     this.setState({ term })
   }
 
-  viewSort(view, arr) {
-    if (view === "active") {
-      return arr.filter(el => !el.done);
+  filter(items, filter) {
+    switch (filter) {
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter(el => !el.done);
+      case 'done':
+        return items.filter(el => el.done);
+      default: return items;
     }
-    if (view === "done") {
-      return arr.filter(el => el.done);
-    }
-    return arr;
   }
 
-  sortList = (items, term) => {
+  search(items, term) {
     if (term.length === 0) {
       return items;
     }
@@ -114,9 +112,9 @@ export default class App extends Component {
   };
 
   render() {
-    const { todoData, listView, term } = this.state;
+    const { todoData, filter, term } = this.state;
 
-    const visibleItems = this.sortList(todoData, term);
+    const visibleItems = this.filter(this.search(todoData, term), filter);
 
 
     const doneCount = todoData.filter(el => el.done).length;
@@ -129,12 +127,11 @@ export default class App extends Component {
           <SearchPanel onToggleTerm={this.onToggleTerm} />
           <ItemStatusFilter
             onToggleView={this.onToggleView}
-            listView={listView}
+            filter={filter}
           />
         </div>
 
         <TodoList
-          // todos={this.viewSort(listView, todoData)}
           todos={visibleItems}
           onDeleted={this.deleteItem}
           onToggleImportant={this.onToggleImportant}

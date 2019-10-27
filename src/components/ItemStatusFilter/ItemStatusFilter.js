@@ -4,35 +4,35 @@ import "./ItemStatusFilter.css";
 
 export default class ItemStatusFilter extends Component {
 
-  classNameChoose(listView, newView) {
-    if (listView === newView) {
+  classNameChoose(filter, newFilter) {
+    if (filter === newFilter) {
       return "btn btn-info";
     }
     return "btn btn-outline-secondary";
   }
 
   render() {
-    const { onToggleView, listView } = this.props;
+    const { onToggleView, filter } = this.props;
 
     return (
       <div className="btn-group">
         <button
           type="button"
-          className={this.classNameChoose(listView, 'all')}
+          className={this.classNameChoose(filter, 'all')}
           onClick={() => onToggleView("all")}
         >
           All
         </button>
         <button
           type="button"
-          className={this.classNameChoose(listView, 'active')}
+          className={this.classNameChoose(filter, 'active')}
           onClick={() => onToggleView("active")}
         >
           Active
         </button>
         <button
           type="button"
-          className={this.classNameChoose(listView, 'done')}
+          className={this.classNameChoose(filter, 'done')}
           onClick={() => onToggleView("done")}
         >
           Done
