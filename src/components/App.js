@@ -17,7 +17,7 @@ export default class App extends Component {
       this.createItem("fuck"),
       this.createItem("ypur mun"),
     ],
-    filter: "all",
+    filter: "active",
     term: ''
   };
 
