@@ -13,9 +13,12 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      this.createItem("drink"),
-      this.createItem("fuck"),
-      this.createItem("ypur mun"),
+      this.createItem("Add task"),
+      this.createItem("Delete task"),
+      this.createItem("Perform the task"),
+      this.createItem("Make the task important"),
+      this.createItem("Filter tasks"),
+      this.createItem("Find task")
     ],
     filter: "active",
     term: ''
