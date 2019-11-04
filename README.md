@@ -1,4 +1,4 @@
-**Simple TodoList developed on React and Иootstrap + ES6 / ES7**  
+**Simple TodoList developed on React and Bootstrap + ES6 / ES7**  
   
 ![TodoListScreen](TodoListScreen.png)  
 
