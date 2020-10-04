@@ -2,4 +2,4 @@
   
 ![TodoListScreen](TodoListScreen.png)  
 
-**[Link to App](https://stassras.github.io/Todo-list/)**
+**[Link to App](https://stanburton.github.io/Todo-list/)**
